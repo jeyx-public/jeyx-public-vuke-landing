@@ -187,6 +187,19 @@ h1, h2, h3 {
     border-color: #1ebe5b;
 }
 
+.btn--invert {
+    background: #fff;
+    color: var(--ink);
+    border-color: #fff;
+    padding: 18px 36px;
+}
+
+.btn--invert:hover {
+    background: var(--ink);
+    color: #fff;
+    border-color: #fff;
+}
+
 /* ============================================================
    NAVIGATION
    ============================================================ */
@@ -701,42 +714,77 @@ h1, h2, h3 {
     padding: var(--section-y) 0;
 }
 
+/* Editorial header: light uppercase wide-tracked — pairs with .ways__title */
+.how__head {
+    margin-bottom: clamp(56px, 7vw, 88px);
+    max-width: 880px;
+}
+
+.how__title {
+    font-family: var(--display);
+    font-weight: 300;
+    font-size: clamp(26px, 3vw, 40px);
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    line-height: 1.25;
+    margin-bottom: 22px;
+}
+
+.how__sub {
+    font-family: var(--text);
+    font-weight: 400;
+    font-size: 15px;
+    color: var(--ink-soft);
+    line-height: 1.75;
+}
+
 .how__steps {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: clamp(28px, 4vw, 64px);
-    counter-reset: step;
+    gap: clamp(32px, 4vw, 64px);
 }
 
 .step {
-    border-top: 1px solid var(--ink);
-    padding-top: 26px;
+    text-align: center;
+    padding: 0 clamp(0px, 1vw, 12px);
 }
 
-.step__num {
-    font-family: var(--display);
-    font-weight: 500;
-    font-size: 13px;
-    letter-spacing: 0.18em;
-    display: inline-block;
-    margin-bottom: 22px;
-    color: var(--ink-soft);
+.step__icon {
+    width: 72px;
+    height: 72px;
+    margin: 0 auto clamp(24px, 3vw, 36px);
+    color: var(--ink);
+}
+
+.step__icon svg {
+    width: 100%;
+    height: 100%;
 }
 
 .step__title {
     font-family: var(--display);
-    font-size: 18px;
-    letter-spacing: -0.01em;
-    font-weight: 700;
-    margin-bottom: 14px;
+    font-weight: 300;
+    font-size: clamp(15px, 1.4vw, 18px);
+    text-transform: uppercase;
+    letter-spacing: 0.16em;
+    line-height: 1.4;
+    margin-bottom: 18px;
 }
 
 .step__desc {
     font-family: var(--text);
     font-weight: 400;
-    font-size: 15px;
+    font-size: 14.5px;
     color: var(--ink-soft);
-    line-height: 1.7;
+    line-height: 1.75;
+    max-width: 36ch;
+    margin: 0 auto;
+}
+
+.how__cta {
+    margin-top: clamp(56px, 7vw, 88px);
+    display: flex;
+    justify-content: center;
 }
 
 /* ============================================================
@@ -821,34 +869,76 @@ h1, h2, h3 {
 }
 
 /* ============================================================
-   FINAL CTA
+   FINAL CTA — editorial banner card with lateral breathing room
    ============================================================ */
 .cta {
-    background: var(--bg-soft);
-    padding: var(--section-y) 0;
-    border-top: 1px solid var(--line);
+    background: #fff;
+    padding: clamp(56px, 7vw, 96px) clamp(20px, 4vw, 56px);
+}
+
+.cta__panel {
+    position: relative;
+    overflow: hidden;
+    isolation: isolate;
+    max-width: var(--container);
+    margin: 0 auto;
+    background: var(--ink);
+    color: #fff;
+}
+
+.cta__bg {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+}
+
+.cta__bg img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center right;
+}
+
+/* Soft dark wash on the left so the headline stays crisp
+   over any background. */
+.cta__panel::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    background: linear-gradient(
+        90deg,
+        rgba(0, 0, 0, 0.55) 0%,
+        rgba(0, 0, 0, 0.35) 30%,
+        rgba(0, 0, 0, 0.1) 55%,
+        rgba(0, 0, 0, 0) 75%
+    );
+    pointer-events: none;
 }
 
 .cta__inner {
-    text-align: center;
+    position: relative;
+    z-index: 2;
+    padding: clamp(64px, 9vw, 130px) clamp(32px, 5vw, 80px);
+    display: grid;
+    grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
+    align-items: center;
+    gap: clamp(24px, 4vw, 80px);
+    min-height: clamp(340px, 46vh, 480px);
+}
+
+.cta__content {
+    max-width: 560px;
 }
 
 .cta__title {
     font-family: var(--display);
-    font-size: clamp(28px, 3.8vw, 44px);
+    font-size: clamp(28px, 3.6vw, 44px);
     letter-spacing: -0.02em;
     font-weight: 700;
-    margin-bottom: 18px;
-    line-height: 1.15;
-}
-
-.cta__sub {
-    font-family: var(--text);
-    font-weight: 300;
-    font-size: 16px;
-    color: var(--ink-soft);
-    max-width: 560px;
-    margin: 0 auto 44px;
+    line-height: 1.18;
+    margin-bottom: 36px;
+    color: #fff;
 }
 
 /* ============================================================
@@ -988,6 +1078,18 @@ h1, h2, h3 {
         gap: 28px;
     }
     .way__media { order: -1; }
+
+    .cta { padding: clamp(40px, 6vw, 64px) clamp(16px, 3vw, 32px); }
+    .cta__inner { grid-template-columns: 1fr; }
+    .cta__content { max-width: 100%; }
+    .cta__panel::before {
+        background: linear-gradient(
+            180deg,
+            rgba(0, 0, 0, 0.55) 0%,
+            rgba(0, 0, 0, 0.45) 50%,
+            rgba(0, 0, 0, 0.6) 100%
+        );
+    }
 
     .footer__grid { grid-template-columns: 1fr; }
 }
