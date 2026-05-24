@@ -223,9 +223,9 @@ h1, h2, h3 {
     max-width: var(--container);
     margin: 0 auto;
     padding: 22px var(--gutter);
-    display: grid;
-    grid-template-columns: 1fr auto 1fr;
+    display: flex;
     align-items: center;
+    justify-content: space-between;
     gap: 24px;
 }
 
@@ -235,13 +235,12 @@ h1, h2, h3 {
     font-size: 20px;
     text-transform: uppercase;
     letter-spacing: 0.18em;
-    justify-self: start;
 }
 
 .nav__links {
     display: flex;
-    gap: clamp(20px, 3vw, 48px);
-    justify-self: center;
+    align-items: center;
+    gap: clamp(20px, 3vw, 40px);
 }
 
 .nav__links a {
@@ -253,24 +252,6 @@ h1, h2, h3 {
     color: var(--ink);
     position: relative;
     padding: 6px 0;
-}
-
-.nav__search {
-    justify-self: end;
-    width: 36px;
-    height: 36px;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    color: var(--ink);
-    transition: opacity .2s ease;
-}
-
-.nav__search:hover { opacity: 0.6; }
-
-.nav__search svg {
-    width: 18px;
-    height: 18px;
 }
 
 .nav__links a::after {
@@ -290,13 +271,30 @@ h1, h2, h3 {
     transform: scaleX(1);
 }
 
+/* CTA dentro del nav — pill negro sutil que se distingue de los links informativos */
+.nav__links a.nav__cta {
+    background: var(--ink);
+    color: #fff;
+    padding: 10px 18px;
+    margin: -6px 0;
+    transition: background-color .2s ease, color .2s ease;
+}
+
+.nav__links a.nav__cta:hover {
+    background: var(--vuke-border);
+    color: var(--ink);
+}
+
+.nav__links a.nav__cta::after {
+    display: none;
+}
+
 .nav__toggle {
     display: none;
     width: 28px;
     height: 22px;
     flex-direction: column;
     justify-content: space-between;
-    justify-self: end;
 }
 
 .nav__toggle span {
@@ -829,7 +827,7 @@ h1, h2, h3 {
    ============================================================ */
 .simulator {
     background: var(--bg-soft);
-    padding: var(--section-y) 0;
+    padding: clamp(32px, 4vw, 56px) 0 clamp(28px, 3.5vw, 48px);
 }
 
 .simulator__head {
@@ -1146,12 +1144,24 @@ h1, h2, h3 {
     align-self: flex-start;
 }
 
+.simulator__watermark {
+    margin-top: clamp(40px, 5vw, 72px);
+    display: flex;
+    justify-content: center;
+}
+
+.simulator__watermark img {
+    width: clamp(120px, 10vw, 160px);
+    height: auto;
+    opacity: 0.9;
+}
+
 /* ============================================================
    FAQ
    ============================================================ */
 .faq {
     background: var(--bg-soft);
-    padding: var(--section-y) 0;
+    padding: clamp(28px, 3.5vw, 48px) 0 var(--section-y);
 }
 
 .faq__list {
@@ -1407,9 +1417,7 @@ h1, h2, h3 {
    RESPONSIVE
    ============================================================ */
 @media (max-width: 960px) {
-    .nav__inner { grid-template-columns: 1fr auto; }
     .nav__links { display: none; }
-    .nav__search { display: none; }
     .nav__toggle { display: flex; }
 
     /* In narrow viewports the wash covers the whole frame
