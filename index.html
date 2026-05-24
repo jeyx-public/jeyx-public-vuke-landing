@@ -195,22 +195,41 @@
         <div class="container">
             <header class="simulator__head">
                 <h2 class="simulator__title">Simulá tus ganancias mensuales</h2>
-                <p class="simulator__sub">Movés el control y ves cuánto podés generar al mes según tus ventas diarias. Cálculo basado en una ganancia promedio de $8.000 por unidad sobre 30 días.</p>
+                <p class="simulator__sub">Movés el control y ves cuánto podés generar al mes según tus ventas diarias.</p>
             </header>
 
             <div class="simulator__grid">
-                <article class="simulator__product">
-                    <div class="simulator__media">
-                        <!-- TODO: Reemplazar por assets/images/products/product-2.png cuando esté el render final -->
-                        <img src="assets/images/products/product-2.png" alt="City Girl Goodness Energy 50 ML">
+                <div class="simulator__product-wrap">
+                    <div class="simulator__tabs" role="tablist" aria-label="Elegí el perfume">
+                        <button type="button" class="simulator__tab is-active" data-product="goodness" role="tab" aria-selected="true">Goodness Energy</button>
+                        <button type="button" class="simulator__tab" data-product="kisses" role="tab" aria-selected="false">Kisses</button>
                     </div>
-                    <div class="simulator__product-info">
-                        <p class="product__line">City Girl</p>
-                        <h3 class="product__title">Goodness Energy 50 ML</h3>
-                        <p class="product__price">Precio al público · $16.000</p>
-                        <p class="product__margin">Ganancia · $8.000</p>
-                    </div>
-                </article>
+
+                    <article class="simulator__product is-active" data-product="goodness" data-profit="8000">
+                        <div class="simulator__media">
+                            <img src="assets/images/selector/goodness.png" alt="City Girl Goodness Energy 50 ML">
+                        </div>
+                        <div class="simulator__product-info">
+                            <p class="product__line">City Girl</p>
+                            <h3 class="product__title">Goodness Energy 50 ML</h3>
+                            <p class="product__price">Precio al público · $16.000</p>
+                            <p class="product__margin">Ganancia · $8.000</p>
+                        </div>
+                    </article>
+
+                    <article class="simulator__product" data-product="kisses" data-profit="4500">
+                        <div class="simulator__media">
+                            <!-- TODO: Dropear assets/images/selector/kisses.png -->
+                            <img src="assets/images/selector/kisses.png" alt="City Girl Kisses" loading="lazy">
+                        </div>
+                        <div class="simulator__product-info">
+                            <p class="product__line">City Girl</p>
+                            <h3 class="product__title">Kisses 50 ML</h3>
+                            <p class="product__price">Precio al público · $9.000</p>
+                            <p class="product__margin">Ganancia · $4.500</p>
+                        </div>
+                    </article>
+                </div>
 
                 <div class="simulator__panel">
                     <div class="simulator__control">

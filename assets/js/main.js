@@ -43,21 +43,27 @@
     });
 
     // ---- Sales simulator ----
-    // Live calculator: perfumes/day × 30 days × $8.000 profit per unit.
+    // Live calculator: perfumes/day × 30 days × profit-per-unit (varies by product).
     const simSlider = document.getElementById('ventasDia');
     if (simSlider) {
-        const PROFIT_PER_UNIT = 8000;
         const DAYS_PER_MONTH = 30;
         const valueDisplay = document.querySelector('.simulator__value');
         const stepButtons = document.querySelectorAll('.simulator__step');
         const monthlySalesEl = document.querySelector('[data-result="monthlySales"]');
         const monthlyEarningsEl = document.querySelector('[data-result="monthlyEarnings"]');
+        const productCards = document.querySelectorAll('.simulator__product');
+        const productTabs = document.querySelectorAll('.simulator__tab');
         const formatARS = n => '$ ' + n.toLocaleString('es-AR');
+
+        const getActiveProfit = () => {
+            const active = document.querySelector('.simulator__product.is-active');
+            return active ? parseInt(active.dataset.profit, 10) : 0;
+        };
 
         const updateSim = () => {
             const perDay = parseInt(simSlider.value, 10);
             const monthly = perDay * DAYS_PER_MONTH;
-            const earnings = monthly * PROFIT_PER_UNIT;
+            const earnings = monthly * getActiveProfit();
 
             if (valueDisplay) valueDisplay.textContent = perDay;
             if (monthlySalesEl) monthlySalesEl.textContent = monthly;
@@ -84,6 +90,21 @@
                     simSlider.value = next;
                     updateSim();
                 }
+            });
+        });
+
+        productTabs.forEach(tab => {
+            tab.addEventListener('click', () => {
+                const target = tab.dataset.product;
+                productTabs.forEach(t => {
+                    const active = t === tab;
+                    t.classList.toggle('is-active', active);
+                    t.setAttribute('aria-selected', String(active));
+                });
+                productCards.forEach(card => {
+                    card.classList.toggle('is-active', card.dataset.product === target);
+                });
+                updateSim();
             });
         });
 

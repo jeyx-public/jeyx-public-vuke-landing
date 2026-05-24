@@ -863,11 +863,59 @@ h1, h2, h3 {
 }
 
 /* ---- Product side ---- */
+.simulator__product-wrap {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Acrylic floating selector, overlaid on top of the product photo */
+.simulator__tabs {
+    position: absolute;
+    top: clamp(12px, 1.5vw, 18px);
+    left: clamp(12px, 1.5vw, 18px);
+    z-index: 2;
+    display: flex;
+    gap: 4px;
+    padding: 5px;
+    background: rgba(255, 255, 255, 0.55);
+    backdrop-filter: blur(14px) saturate(180%);
+    -webkit-backdrop-filter: blur(14px) saturate(180%);
+    border: 1px solid rgba(255, 255, 255, 0.45);
+    box-shadow: 0 6px 24px rgba(0, 0, 0, 0.08);
+}
+
+.simulator__tab {
+    font-family: var(--display);
+    font-weight: 500;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    color: var(--ink);
+    padding: 9px 16px;
+    cursor: pointer;
+    background: transparent;
+    transition: background-color .2s ease, color .2s ease;
+}
+
+.simulator__tab:hover {
+    background: rgba(0, 0, 0, 0.06);
+}
+
+.simulator__tab.is-active {
+    background: var(--ink);
+    color: #fff;
+}
+
 .simulator__product {
     background: #fff;
     border: 1px solid var(--vuke-border);
-    display: flex;
     flex-direction: column;
+    display: none;
+}
+
+.simulator__product.is-active {
+    display: flex;
 }
 
 .simulator__media {
