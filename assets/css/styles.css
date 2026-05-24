@@ -618,7 +618,7 @@ h1, h2, h3 {
    ============================================================ */
 .ways {
     background: #fff;
-    padding: var(--section-y) 0;
+    padding: var(--section-y) 0 clamp(32px, 4vw, 56px);
 }
 
 .ways__title {
@@ -717,7 +717,7 @@ h1, h2, h3 {
    ============================================================ */
 .how {
     background: #fff;
-    padding: var(--section-y) 0;
+    padding: clamp(32px, 4vw, 56px) 0 var(--section-y);
 }
 
 /* Editorial header: light uppercase wide-tracked — pairs with .ways__title */
@@ -732,8 +732,17 @@ h1, h2, h3 {
     font-size: clamp(26px, 3vw, 40px);
     text-transform: uppercase;
     letter-spacing: 0.18em;
-    line-height: 1.25;
+    line-height: 1.65;
     margin-bottom: 22px;
+}
+
+/* Highlighted text effect: per-line black fill with gold letters. */
+.how__title span {
+    background: var(--ink);
+    color: var(--vuke-border);
+    padding: clamp(6px, 0.8vw, 10px) clamp(12px, 1.4vw, 18px);
+    box-decoration-break: clone;
+    -webkit-box-decoration-break: clone;
 }
 
 .how__sub {
@@ -751,8 +760,30 @@ h1, h2, h3 {
 }
 
 .step {
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
     text-align: center;
-    padding: 0 clamp(0px, 1vw, 12px);
+    /* Top, sides, bottom — extra bottom padding reserves a zone for the watermark */
+    padding: clamp(32px, 3.5vw, 48px) clamp(20px, 2.5vw, 32px) clamp(56px, 6vw, 80px);
+    border: 1px solid var(--vuke-border);
+}
+
+/* Brand monogram as low-contrast watermark in the bottom-left. */
+/* TODO: Dropear el PNG final en assets/images/watermark/watermark.png */
+.step::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 50%;
+    height: 30%;
+    background: url('../images/watermark/watermark.png') no-repeat center bottom;
+    background-size: contain;
+    opacity: 0.5;
+    pointer-events: none;
+    z-index: -1;
 }
 
 .step__icon {
