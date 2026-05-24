@@ -651,11 +651,17 @@ h1, h2, h3 {
 .way {
     display: grid;
     grid-template-columns: 1.1fr 1fr;
-    gap: clamp(28px, 5vw, 80px);
-    align-items: center;
+    grid-template-areas:
+        "head media"
+        "text media";
+    gap: clamp(20px, 3vw, 36px) clamp(28px, 5vw, 80px);
+    align-items: start;
 }
 
+.way__head { grid-area: head; }
+.way__media { grid-area: media; align-self: center; }
 .way__text {
+    grid-area: text;
     padding: 0 clamp(0px, 1vw, 12px);
 }
 
@@ -780,8 +786,8 @@ h1, h2, h3 {
     bottom: 0;
     left: 50%;
     transform: translateX(-50%);
-    width: 50%;
-    height: 30%;
+    width: 40%;
+    height: 20%;
     background: url('../images/watermark/watermark.png') no-repeat center bottom;
     background-size: contain;
     opacity: 0.5;
@@ -1333,13 +1339,19 @@ h1, h2, h3 {
 }
 
 .footer__logo {
-    font-family: var(--display);
-    font-weight: 700;
-    font-size: 22px;
-    text-transform: uppercase;
-    letter-spacing: 0.18em;
+    display: inline-flex;
+    align-items: center;
+    line-height: 0;
     margin-bottom: 22px;
-    color: #fff;
+}
+
+.footer__logo img {
+    height: clamp(40px, 4vw, 56px);
+    width: auto;
+    display: block;
+    /* The brand PNG is dark on transparent; invert to render in white over
+       the black footer. Replace with a light variant if available. */
+    filter: invert(1) brightness(1.05);
 }
 
 .footer__about {
@@ -1455,28 +1467,40 @@ h1, h2, h3 {
         font-size: 6px;
     }
 
-    .products__grid,
-    .how__steps {
+    .products__grid {
         grid-template-columns: 1fr;
         gap: 40px;
     }
 
-    /* Values: full-width auto-rotating carousel on mobile */
-    .values__grid {
+    /* Auto-rotating horizontal carousels on mobile (values + steps) */
+    .values__grid,
+    .how__steps {
         display: flex;
         grid-template-columns: none;
-        gap: 0;
-        padding: clamp(40px, 6vw, 64px) clamp(20px, 5vw, 32px);
+        gap: clamp(20px, 5vw, 32px);
+        padding-left: clamp(20px, 5vw, 32px);
+        padding-right: clamp(20px, 5vw, 32px);
         overflow-x: auto;
+        overscroll-behavior-x: contain;
         scroll-snap-type: x mandatory;
         -webkit-overflow-scrolling: touch;
         scrollbar-width: none;
     }
-    .values__grid::-webkit-scrollbar { display: none; }
+    .values__grid::-webkit-scrollbar,
+    .how__steps::-webkit-scrollbar { display: none; }
 
-    .value {
+    .values__grid {
+        padding-top: clamp(40px, 6vw, 64px);
+        padding-bottom: clamp(40px, 6vw, 64px);
+    }
+
+    .value,
+    .step {
         flex: 0 0 100%;
         scroll-snap-align: center;
+    }
+
+    .value {
         padding: 32px 24px;
         border: 1px solid var(--line);
         background: #fff;
@@ -1488,9 +1512,12 @@ h1, h2, h3 {
     }
     .way {
         grid-template-columns: 1fr;
-        gap: 28px;
+        grid-template-areas:
+            "head"
+            "media"
+            "text";
+        gap: 24px;
     }
-    .way__media { order: -1; }
 
     .simulator__grid { grid-template-columns: 1fr; }
     .simulator__product { max-width: 420px; margin: 0 auto; }

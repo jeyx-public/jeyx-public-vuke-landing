@@ -42,50 +42,51 @@
         });
     });
 
-    // ---- Values bar auto-rotating carousel (mobile only) ----
-    const valuesGrid = document.querySelector('.values__grid');
-    if (valuesGrid) {
-        const cards = valuesGrid.querySelectorAll('.value');
-        const mobileQuery = window.matchMedia('(max-width: 960px)');
-        let valuesTimer = null;
-        let valuesIndex = 0;
+    // ---- Auto-rotating horizontal carousels (mobile only) ----
+    // Generic helper: rotates the children of a horizontal scroll container,
+    // centering each item inside the container via scrollLeft (never touching
+    // the page's vertical scroll). Pauses permanently on user interaction.
+    const mobileQuery = window.matchMedia('(max-width: 960px)');
+    const reduceMotionQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
+
+    const setupAutoCarousel = (grid, itemSelector, interval) => {
+        if (!grid) return;
+        const items = grid.querySelectorAll(itemSelector);
+        if (items.length < 2) return;
+
+        let timer = null;
+        let index = 0;
         let userInteracted = false;
 
-        const advanceValues = () => {
+        const advance = () => {
             if (userInteracted) return;
-            valuesIndex = (valuesIndex + 1) % cards.length;
-            cards[valuesIndex].scrollIntoView({
-                behavior: 'smooth',
-                block: 'nearest',
-                inline: 'center'
-            });
+            index = (index + 1) % items.length;
+            const item = items[index];
+            const target = item.offsetLeft + (item.offsetWidth / 2) - (grid.clientWidth / 2);
+            grid.scrollTo({ left: target, behavior: 'smooth' });
         };
 
-        const startValuesRotation = () => {
-            if (valuesTimer || cards.length < 2) return;
-            if (!mobileQuery.matches) return;
-            if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-            valuesTimer = setInterval(advanceValues, 3000);
+        const start = () => {
+            if (timer || !mobileQuery.matches || reduceMotionQuery.matches) return;
+            timer = setInterval(advance, interval);
         };
 
-        const stopValuesRotation = () => {
-            if (valuesTimer) { clearInterval(valuesTimer); valuesTimer = null; }
+        const stop = () => {
+            if (timer) { clearInterval(timer); timer = null; }
         };
 
-        const handleInteraction = () => {
-            userInteracted = true;
-            stopValuesRotation();
-        };
+        const handleInteraction = () => { userInteracted = true; stop(); };
 
-        valuesGrid.addEventListener('touchstart', handleInteraction, { passive: true });
-        valuesGrid.addEventListener('mousedown', handleInteraction);
-        valuesGrid.addEventListener('wheel', handleInteraction, { passive: true });
-        mobileQuery.addEventListener('change', e => {
-            if (e.matches) startValuesRotation(); else stopValuesRotation();
-        });
+        grid.addEventListener('touchstart', handleInteraction, { passive: true });
+        grid.addEventListener('mousedown', handleInteraction);
+        grid.addEventListener('wheel', handleInteraction, { passive: true });
+        mobileQuery.addEventListener('change', e => { e.matches ? start() : stop(); });
 
-        startValuesRotation();
-    }
+        start();
+    };
+
+    setupAutoCarousel(document.querySelector('.values__grid'), '.value', 3000);
+    setupAutoCarousel(document.querySelector('.how__steps'), '.step', 4500);
 
     // ---- Sales simulator ----
     // Live calculator: perfumes/day × 30 days × profit-per-unit (varies by product).
