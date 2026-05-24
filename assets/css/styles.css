@@ -1436,7 +1436,7 @@ h1, h2, h3 {
         );
     }
 
-    .hero__bg img { object-position: 65% center; }
+    .hero__bg img { object-position: 60% center; }
 
     .hero__inner {
         grid-template-columns: 1fr;
@@ -1455,11 +1455,31 @@ h1, h2, h3 {
         font-size: 6px;
     }
 
-    .values__grid,
     .products__grid,
     .how__steps {
         grid-template-columns: 1fr;
         gap: 40px;
+    }
+
+    /* Values: full-width auto-rotating carousel on mobile */
+    .values__grid {
+        display: flex;
+        grid-template-columns: none;
+        gap: 0;
+        padding: clamp(40px, 6vw, 64px) clamp(20px, 5vw, 32px);
+        overflow-x: auto;
+        scroll-snap-type: x mandatory;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+    }
+    .values__grid::-webkit-scrollbar { display: none; }
+
+    .value {
+        flex: 0 0 100%;
+        scroll-snap-align: center;
+        padding: 32px 24px;
+        border: 1px solid var(--line);
+        background: #fff;
     }
 
     .ways__grid {

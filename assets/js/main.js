@@ -42,6 +42,51 @@
         });
     });
 
+    // ---- Values bar auto-rotating carousel (mobile only) ----
+    const valuesGrid = document.querySelector('.values__grid');
+    if (valuesGrid) {
+        const cards = valuesGrid.querySelectorAll('.value');
+        const mobileQuery = window.matchMedia('(max-width: 960px)');
+        let valuesTimer = null;
+        let valuesIndex = 0;
+        let userInteracted = false;
+
+        const advanceValues = () => {
+            if (userInteracted) return;
+            valuesIndex = (valuesIndex + 1) % cards.length;
+            cards[valuesIndex].scrollIntoView({
+                behavior: 'smooth',
+                block: 'nearest',
+                inline: 'center'
+            });
+        };
+
+        const startValuesRotation = () => {
+            if (valuesTimer || cards.length < 2) return;
+            if (!mobileQuery.matches) return;
+            if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+            valuesTimer = setInterval(advanceValues, 3000);
+        };
+
+        const stopValuesRotation = () => {
+            if (valuesTimer) { clearInterval(valuesTimer); valuesTimer = null; }
+        };
+
+        const handleInteraction = () => {
+            userInteracted = true;
+            stopValuesRotation();
+        };
+
+        valuesGrid.addEventListener('touchstart', handleInteraction, { passive: true });
+        valuesGrid.addEventListener('mousedown', handleInteraction);
+        valuesGrid.addEventListener('wheel', handleInteraction, { passive: true });
+        mobileQuery.addEventListener('change', e => {
+            if (e.matches) startValuesRotation(); else stopValuesRotation();
+        });
+
+        startValuesRotation();
+    }
+
     // ---- Sales simulator ----
     // Live calculator: perfumes/day × 30 days × profit-per-unit (varies by product).
     const simSlider = document.getElementById('ventasDia');
