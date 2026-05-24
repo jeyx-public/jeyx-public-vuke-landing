@@ -42,6 +42,54 @@
         });
     });
 
+    // ---- Sales simulator ----
+    // Live calculator: perfumes/day × 30 days × $8.000 profit per unit.
+    const simSlider = document.getElementById('ventasDia');
+    if (simSlider) {
+        const PROFIT_PER_UNIT = 8000;
+        const DAYS_PER_MONTH = 30;
+        const valueDisplay = document.querySelector('.simulator__value');
+        const stepButtons = document.querySelectorAll('.simulator__step');
+        const monthlySalesEl = document.querySelector('[data-result="monthlySales"]');
+        const monthlyEarningsEl = document.querySelector('[data-result="monthlyEarnings"]');
+        const formatARS = n => '$ ' + n.toLocaleString('es-AR');
+
+        const updateSim = () => {
+            const perDay = parseInt(simSlider.value, 10);
+            const monthly = perDay * DAYS_PER_MONTH;
+            const earnings = monthly * PROFIT_PER_UNIT;
+
+            if (valueDisplay) valueDisplay.textContent = perDay;
+            if (monthlySalesEl) monthlySalesEl.textContent = monthly;
+            if (monthlyEarningsEl) monthlyEarningsEl.textContent = formatARS(earnings);
+
+            const min = parseInt(simSlider.min, 10);
+            const max = parseInt(simSlider.max, 10);
+            stepButtons.forEach(btn => {
+                const step = parseInt(btn.dataset.step, 10);
+                btn.disabled = (step < 0 && perDay <= min) || (step > 0 && perDay >= max);
+            });
+        };
+
+        simSlider.addEventListener('input', updateSim);
+
+        stepButtons.forEach(btn => {
+            btn.addEventListener('click', () => {
+                const step = parseInt(btn.dataset.step, 10);
+                const current = parseInt(simSlider.value, 10);
+                const min = parseInt(simSlider.min, 10);
+                const max = parseInt(simSlider.max, 10);
+                const next = Math.min(max, Math.max(min, current + step));
+                if (next !== current) {
+                    simSlider.value = next;
+                    updateSim();
+                }
+            });
+        });
+
+        updateSim();
+    }
+
     // ---- Fade carousels ----
     // Any element marked [data-carousel] rotates its children with the
     // .is-active class on a fixed interval (default 5s, override via

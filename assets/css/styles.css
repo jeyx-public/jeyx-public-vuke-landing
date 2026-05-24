@@ -825,6 +825,280 @@ h1, h2, h3 {
 }
 
 /* ============================================================
+   SALES SIMULATOR
+   ============================================================ */
+.simulator {
+    background: var(--bg-soft);
+    padding: var(--section-y) 0;
+}
+
+.simulator__head {
+    margin-bottom: clamp(40px, 5vw, 64px);
+    max-width: 720px;
+}
+
+.simulator__title {
+    font-family: var(--display);
+    font-weight: 300;
+    font-size: clamp(26px, 3vw, 38px);
+    text-transform: uppercase;
+    letter-spacing: 0.16em;
+    line-height: 1.25;
+    margin-bottom: 18px;
+}
+
+.simulator__sub {
+    font-family: var(--text);
+    font-weight: 400;
+    font-size: 15px;
+    color: var(--ink-soft);
+    line-height: 1.75;
+}
+
+.simulator__grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1.25fr);
+    gap: clamp(28px, 4vw, 64px);
+    align-items: stretch;
+}
+
+/* ---- Product side ---- */
+.simulator__product {
+    background: #fff;
+    border: 1px solid var(--vuke-border);
+    display: flex;
+    flex-direction: column;
+}
+
+.simulator__media {
+    aspect-ratio: 4 / 5;
+    overflow: hidden;
+    border-bottom: 1px solid var(--vuke-border);
+    background: var(--bg-soft);
+}
+
+.simulator__media img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.simulator__product-info {
+    padding: 24px clamp(20px, 2vw, 28px) 28px;
+    text-align: center;
+}
+
+.simulator__product-info .product__line {
+    font-family: var(--display);
+    font-weight: 500;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.22em;
+    margin-bottom: 10px;
+    color: var(--ink-soft);
+}
+
+.simulator__product-info .product__title {
+    font-family: var(--display);
+    font-size: 17px;
+    letter-spacing: -0.005em;
+    font-weight: 700;
+    margin-bottom: 14px;
+}
+
+.simulator__product-info .product__price {
+    font-family: var(--text);
+    font-weight: 400;
+    font-size: 13px;
+    border-top: 1px solid var(--line);
+    padding-top: 14px;
+    margin-bottom: 14px;
+}
+
+.simulator__product-info .product__margin {
+    display: inline-block;
+    background: var(--ink);
+    color: #fff;
+    font-family: var(--display);
+    font-weight: 600;
+    font-size: 12px;
+    letter-spacing: 0.04em;
+    padding: 8px 18px;
+}
+
+/* ---- Control panel ---- */
+.simulator__panel {
+    background: #fff;
+    border: 1px solid var(--ink);
+    padding: clamp(28px, 3.5vw, 48px);
+    display: flex;
+    flex-direction: column;
+    gap: clamp(28px, 3vw, 40px);
+}
+
+.simulator__label {
+    display: block;
+    font-family: var(--display);
+    font-weight: 500;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: var(--track-eyebrow);
+    color: var(--ink-soft);
+    margin-bottom: 18px;
+}
+
+.simulator__input-row {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: clamp(16px, 2.5vw, 32px);
+    margin-bottom: 18px;
+}
+
+.simulator__step {
+    width: 44px;
+    height: 44px;
+    border: 1px solid var(--ink);
+    background: #fff;
+    color: var(--ink);
+    font-family: var(--display);
+    font-size: 22px;
+    font-weight: 400;
+    line-height: 1;
+    transition: background-color .2s ease, color .2s ease;
+}
+
+.simulator__step:hover {
+    background: var(--ink);
+    color: #fff;
+}
+
+.simulator__step:disabled {
+    opacity: 0.35;
+    cursor: not-allowed;
+}
+
+.simulator__value {
+    font-family: var(--display);
+    font-weight: 300;
+    font-size: clamp(48px, 7vw, 88px);
+    line-height: 1;
+    letter-spacing: -0.02em;
+    min-width: 1.4ch;
+    text-align: center;
+}
+
+/* Range slider — minimalist black track + thumb */
+.simulator__slider {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 100%;
+    height: 2px;
+    background: var(--line);
+    outline: none;
+    cursor: pointer;
+    margin: 0;
+}
+
+.simulator__slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 18px;
+    height: 18px;
+    background: var(--ink);
+    border: 0;
+    cursor: pointer;
+    transition: transform .2s ease;
+}
+
+.simulator__slider::-moz-range-thumb {
+    width: 18px;
+    height: 18px;
+    background: var(--ink);
+    border: 0;
+    cursor: pointer;
+}
+
+.simulator__slider:hover::-webkit-slider-thumb,
+.simulator__slider:focus-visible::-webkit-slider-thumb {
+    transform: scale(1.15);
+}
+
+.simulator__scale {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 8px;
+    font-family: var(--display);
+    font-weight: 500;
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    color: var(--ink-soft);
+}
+
+/* ---- Results ---- */
+.simulator__results {
+    border-top: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+    padding: clamp(24px, 3vw, 36px) 0;
+    display: grid;
+    gap: clamp(20px, 2.5vw, 32px);
+}
+
+.simulator__result {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.simulator__result-label {
+    font-family: var(--display);
+    font-weight: 500;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: var(--track-eyebrow);
+    color: var(--ink-soft);
+}
+
+.simulator__result-value {
+    font-family: var(--display);
+    font-weight: 700;
+    font-size: clamp(24px, 3vw, 36px);
+    letter-spacing: -0.01em;
+    line-height: 1.1;
+}
+
+.simulator__result-unit {
+    font-family: var(--text);
+    font-weight: 400;
+    font-size: 13px;
+    color: var(--ink-soft);
+}
+
+.simulator__result--hero {
+    background: var(--ink);
+    color: #fff;
+    padding: clamp(20px, 2.5vw, 32px);
+    margin: 0 clamp(-28px, -3.5vw, -48px);
+}
+
+.simulator__result--hero .simulator__result-label {
+    color: rgba(255, 255, 255, 0.6);
+}
+
+.simulator__result--hero .simulator__result-value {
+    font-size: clamp(32px, 4.5vw, 56px);
+    color: var(--vuke-border);
+}
+
+.simulator__result--hero .simulator__result-unit {
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.simulator__cta {
+    align-self: flex-start;
+}
+
+/* ============================================================
    FAQ
    ============================================================ */
 .faq {
@@ -1120,6 +1394,9 @@ h1, h2, h3 {
         gap: 28px;
     }
     .way__media { order: -1; }
+
+    .simulator__grid { grid-template-columns: 1fr; }
+    .simulator__product { max-width: 420px; margin: 0 auto; }
 
     .cta { padding: clamp(40px, 6vw, 64px) clamp(16px, 3vw, 32px); }
     .cta__inner { grid-template-columns: 1fr; }

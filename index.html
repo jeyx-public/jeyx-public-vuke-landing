@@ -190,6 +190,62 @@
         </div>
     </section>
 
+    <!-- ============ SALES SIMULATOR ============ -->
+    <section id="simulador" class="simulator">
+        <div class="container">
+            <header class="simulator__head">
+                <h2 class="simulator__title">Simulá tus ganancias mensuales</h2>
+                <p class="simulator__sub">Movés el control y ves cuánto podés generar al mes según tus ventas diarias. Cálculo basado en una ganancia promedio de $8.000 por unidad sobre 30 días.</p>
+            </header>
+
+            <div class="simulator__grid">
+                <article class="simulator__product">
+                    <div class="simulator__media">
+                        <!-- TODO: Reemplazar por assets/images/products/product-2.png cuando esté el render final -->
+                        <img src="assets/images/products/product-2.png" alt="City Girl Goodness Energy 50 ML">
+                    </div>
+                    <div class="simulator__product-info">
+                        <p class="product__line">City Girl</p>
+                        <h3 class="product__title">Goodness Energy 50 ML</h3>
+                        <p class="product__price">Precio al público · $16.000</p>
+                        <p class="product__margin">Ganancia · $8.000</p>
+                    </div>
+                </article>
+
+                <div class="simulator__panel">
+                    <div class="simulator__control">
+                        <label class="simulator__label" for="ventasDia">¿Cuántos perfumes vendés por día?</label>
+                        <div class="simulator__input-row">
+                            <button type="button" class="simulator__step" data-step="-1" aria-label="Restar una unidad">−</button>
+                            <output class="simulator__value" for="ventasDia">3</output>
+                            <button type="button" class="simulator__step" data-step="1" aria-label="Sumar una unidad">+</button>
+                        </div>
+                        <input type="range" id="ventasDia" min="1" max="15" value="3" step="1" class="simulator__slider" aria-label="Cantidad de perfumes vendidos por día">
+                        <div class="simulator__scale" aria-hidden="true">
+                            <span>1</span>
+                            <span>15</span>
+                        </div>
+                    </div>
+
+                    <div class="simulator__results">
+                        <div class="simulator__result">
+                            <span class="simulator__result-label">Ventas mensuales</span>
+                            <span class="simulator__result-value" data-result="monthlySales">90</span>
+                            <span class="simulator__result-unit">unidades</span>
+                        </div>
+                        <div class="simulator__result simulator__result--hero">
+                            <span class="simulator__result-label">Ganancia estimada</span>
+                            <span class="simulator__result-value" data-result="monthlyEarnings">$ 720.000</span>
+                            <span class="simulator__result-unit">por mes</span>
+                        </div>
+                    </div>
+
+                    <a href="#contacto" class="btn btn--solid simulator__cta">Quiero empezar</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- ============ FAQ ============ -->
     <section id="preguntas" class="faq">
         <div class="container container--narrow">
