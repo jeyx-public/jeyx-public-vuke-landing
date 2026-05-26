@@ -34,6 +34,8 @@ body {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     overflow-x: hidden;
+    display: flex;
+    flex-direction: column;
 }
 
 img,
@@ -317,7 +319,6 @@ h1, h2, h3 {
 .nav__mobile {
     display: none;
     flex-direction: column;
-    border-top: 1px solid var(--line);
     background: #fff;
 }
 
@@ -330,8 +331,25 @@ h1, h2, h3 {
     border-bottom: 1px solid var(--line);
 }
 
-.nav__mobile.is-open {
-    display: flex;
+/* Backdrop oscuro detrás del drawer en mobile */
+.nav__backdrop {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.4);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity .3s ease;
+    z-index: 50;
+}
+
+.nav__backdrop.is-open {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+/* Bloqueo de scroll del body cuando el drawer está abierto */
+body.menu-open {
+    overflow: hidden;
 }
 
 /* ============================================================
@@ -1436,6 +1454,74 @@ h1, h2, h3 {
 @media (max-width: 960px) {
     .nav__links { display: none; }
     .nav__toggle { display: flex; }
+
+    /* Reorder via flex order: nav → marquee → hero → resto en mobile */
+    .nav { order: -2; z-index: 60; }
+    .marquee { order: -1; }
+
+    /* Drawer lateral derecho en mobile — blanco sólido */
+    .nav__mobile {
+        display: flex;
+        position: fixed;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        width: min(78vw, 340px);
+        background: #fff;
+        color: var(--ink);
+        padding-top: clamp(72px, 14vw, 96px);
+        transform: translateX(100%);
+        transition: transform .35s cubic-bezier(.4, 0, .2, 1);
+        z-index: 55;
+        box-shadow: -16px 0 40px rgba(0, 0, 0, 0.2);
+    }
+
+    .nav__mobile.is-open {
+        transform: translateX(0);
+    }
+
+    .nav__mobile a {
+        color: var(--ink);
+        border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+    }
+
+    /* Botón X de cierre, anclado arriba a la derecha dentro del drawer */
+    .nav__mobile-close {
+        position: absolute;
+        top: clamp(18px, 4vw, 28px);
+        right: clamp(18px, 4vw, 28px);
+        width: 40px;
+        height: 40px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--ink);
+        background: transparent;
+        cursor: pointer;
+        transition: opacity .2s ease;
+    }
+
+    .nav__mobile-close:hover { opacity: 0.55; }
+
+    .nav__mobile-close svg {
+        width: 22px;
+        height: 22px;
+    }
+
+    /* Watermark de marca al pie del drawer */
+    .nav__mobile-watermark {
+        margin-top: auto;
+        display: flex;
+        justify-content: center;
+        padding: clamp(24px, 6vh, 40px) 16px clamp(24px, 6vh, 40px);
+        pointer-events: none;
+    }
+
+    .nav__mobile-watermark img {
+        width: clamp(220px, 70vw, 320px);
+        height: auto;
+        opacity: 0.28;
+    }
 
     /* In narrow viewports the wash is softer so the photography shows
        through, and the focus stays centered horizontally. */

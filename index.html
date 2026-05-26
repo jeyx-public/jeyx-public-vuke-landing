@@ -32,13 +32,23 @@
                 <span></span><span></span><span></span>
             </button>
         </div>
-        <nav id="mobileMenu" class="nav__mobile" aria-label="Navegación móvil">
-            <a href="#inicio">Inicio</a>
-            <a href="#vender">Cómo vender</a>
-            <a href="#simulador">Simular ganancias</a>
-            <a href="#preguntas">Preguntas frecuentes</a>
-        </nav>
     </header>
+    <nav id="mobileMenu" class="nav__mobile" aria-label="Navegación móvil" aria-hidden="true">
+        <button type="button" class="nav__mobile-close" aria-label="Cerrar menú">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="square" aria-hidden="true">
+                <line x1="5" y1="5" x2="19" y2="19"/>
+                <line x1="19" y1="5" x2="5" y2="19"/>
+            </svg>
+        </button>
+        <a href="#inicio">Inicio</a>
+        <a href="#vender">Cómo vender</a>
+        <a href="#simulador">Simular ganancias</a>
+        <a href="#preguntas">Preguntas frecuentes</a>
+        <div class="nav__mobile-watermark" aria-hidden="true">
+            <img src="assets/images/watermark/watermark-2.png" alt="">
+        </div>
+    </nav>
+    <div class="nav__backdrop" id="navBackdrop" aria-hidden="true"></div>
 
     <!-- ============ HERO ============ -->
     <section id="inicio" class="hero">
@@ -139,56 +149,6 @@
         </div>
     </section>
 
-    <!-- ============ HOW IT WORKS ============ -->
-    <section id="pasos" class="how">
-        <div class="container">
-            <header class="how__head">
-                <h2 class="how__title"><span>Tu negocio propio en 3 pasos simples</span></h2>
-                <p class="how__sub">Sin trámites complejos ni demoras. Ponete en contacto hoy mismo y armá tu negocio sin necesidad de stock.</p>
-            </header>
-
-            <ol class="how__steps">
-                <li class="step">
-                    <div class="step__icon" aria-hidden="true">
-                        <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="square" stroke-linejoin="miter">
-                            <path d="M10 14 H54 V44 H26 L16 54 V44 H10 Z"/>
-                            <line x1="20" y1="26" x2="44" y2="26"/>
-                            <line x1="20" y1="34" x2="38" y2="34"/>
-                        </svg>
-                    </div>
-                    <h3 class="step__title">1. Escribinos por WhatsApp</h3>
-                    <p class="step__desc">Tocá el botón de acción para iniciar un chat directo con nosotros. Solo te vamos a solicitar tu nombre, un número de teléfono de contacto y la localidad donde vivís para agendarte en nuestra red de revendedoras.</p>
-                </li>
-                <li class="step">
-                    <div class="step__icon" aria-hidden="true">
-                        <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="square" stroke-linejoin="miter">
-                            <path d="M14 8 H46 L54 16 V56 H14 Z"/>
-                            <path d="M46 8 V16 H54"/>
-                            <line x1="22" y1="28" x2="46" y2="28"/>
-                            <line x1="22" y1="36" x2="46" y2="36"/>
-                            <line x1="22" y1="44" x2="38" y2="44"/>
-                        </svg>
-                    </div>
-                    <h3 class="step__title">2. Accedé al catálogo</h3>
-                    <p class="step__desc">Te enviamos de forma inmediata el catálogo digital vigente, el listado de precios mayoristas y el calendario con las fechas exactas de cierre de pedidos y entregas.</p>
-                </li>
-                <li class="step">
-                    <div class="step__icon" aria-hidden="true">
-                        <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="square" stroke-linejoin="miter">
-                            <polygon points="32,8 56,20 56,44 32,56 8,44 8,20"/>
-                            <line x1="8" y1="20" x2="32" y2="32"/>
-                            <line x1="56" y1="20" x2="32" y2="32"/>
-                            <line x1="32" y1="32" x2="32" y2="56"/>
-                            <line x1="20" y1="14" x2="44" y2="26"/>
-                        </svg>
-                    </div>
-                    <h3 class="step__title">3. Pasá tus pedidos</h3>
-                    <p class="step__desc">Mostrá el catálogo a tus clientes y cargá tus ventas directamente a nuestro WhatsApp. Una vez que los productos estén listos, coordinás para retirarlos de forma presencial por nuestro punto en Marcos Paz y te quedás con tu ganancia.</p>
-                </li>
-            </ol>
-        </div>
-    </section>
-
     <!-- ============ SALES SIMULATOR ============ -->
     <section id="simulador" class="simulator">
         <div class="container">
@@ -265,6 +225,56 @@
             <div class="simulator__watermark" aria-hidden="true">
                 <img src="assets/images/watermark/watermark.png" alt="">
             </div>
+        </div>
+    </section>
+
+    <!-- ============ HOW IT WORKS ============ -->
+    <section id="pasos" class="how">
+        <div class="container">
+            <header class="how__head">
+                <h2 class="how__title"><span>Tu negocio propio en 3 pasos simples</span></h2>
+                <p class="how__sub">Sin trámites complejos ni demoras. Ponete en contacto hoy mismo y armá tu negocio sin necesidad de stock.</p>
+            </header>
+
+            <ol class="how__steps">
+                <li class="step">
+                    <div class="step__icon" aria-hidden="true">
+                        <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="square" stroke-linejoin="miter">
+                            <path d="M10 14 H54 V44 H26 L16 54 V44 H10 Z"/>
+                            <line x1="20" y1="26" x2="44" y2="26"/>
+                            <line x1="20" y1="34" x2="38" y2="34"/>
+                        </svg>
+                    </div>
+                    <h3 class="step__title">1. Escribinos por WhatsApp</h3>
+                    <p class="step__desc">Tocá el botón de acción para iniciar un chat directo con nosotros. Solo te vamos a solicitar tu nombre, un número de teléfono de contacto y la localidad donde vivís para agendarte en nuestra red de revendedoras.</p>
+                </li>
+                <li class="step">
+                    <div class="step__icon" aria-hidden="true">
+                        <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="square" stroke-linejoin="miter">
+                            <path d="M14 8 H46 L54 16 V56 H14 Z"/>
+                            <path d="M46 8 V16 H54"/>
+                            <line x1="22" y1="28" x2="46" y2="28"/>
+                            <line x1="22" y1="36" x2="46" y2="36"/>
+                            <line x1="22" y1="44" x2="38" y2="44"/>
+                        </svg>
+                    </div>
+                    <h3 class="step__title">2. Accedé al catálogo</h3>
+                    <p class="step__desc">Te enviamos de forma inmediata el catálogo digital vigente, el listado de precios mayoristas y el calendario con las fechas exactas de cierre de pedidos y entregas.</p>
+                </li>
+                <li class="step">
+                    <div class="step__icon" aria-hidden="true">
+                        <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="square" stroke-linejoin="miter">
+                            <polygon points="32,8 56,20 56,44 32,56 8,44 8,20"/>
+                            <line x1="8" y1="20" x2="32" y2="32"/>
+                            <line x1="56" y1="20" x2="32" y2="32"/>
+                            <line x1="32" y1="32" x2="32" y2="56"/>
+                            <line x1="20" y1="14" x2="44" y2="26"/>
+                        </svg>
+                    </div>
+                    <h3 class="step__title">3. Pasá tus pedidos</h3>
+                    <p class="step__desc">Mostrá el catálogo a tus clientes y cargá tus ventas directamente a nuestro WhatsApp. Una vez que los productos estén listos, coordinás para retirarlos de forma presencial por nuestro punto en Marcos Paz y te quedás con tu ganancia.</p>
+                </li>
+            </ol>
         </div>
     </section>
 

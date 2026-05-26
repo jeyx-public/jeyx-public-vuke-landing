@@ -4,23 +4,37 @@
 // =============================================================
 
 (() => {
-    // ---- Mobile menu ----
+    // ---- Mobile menu (right-side slide-out drawer) ----
     const toggle = document.querySelector('.nav__toggle');
     const mobile = document.getElementById('mobileMenu');
+    const backdrop = document.getElementById('navBackdrop');
 
     if (toggle && mobile) {
-        toggle.addEventListener('click', () => {
-            const open = mobile.classList.toggle('is-open');
-            toggle.setAttribute('aria-expanded', String(open));
+        const setMenuState = (open) => {
+            mobile.classList.toggle('is-open', open);
             toggle.classList.toggle('is-open', open);
+            toggle.setAttribute('aria-expanded', String(open));
+            mobile.setAttribute('aria-hidden', String(!open));
+            backdrop?.classList.toggle('is-open', open);
+            document.body.classList.toggle('menu-open', open);
+        };
+
+        toggle.addEventListener('click', () => {
+            setMenuState(!mobile.classList.contains('is-open'));
         });
 
         mobile.querySelectorAll('a').forEach(a => {
-            a.addEventListener('click', () => {
-                mobile.classList.remove('is-open');
-                toggle.classList.remove('is-open');
-                toggle.setAttribute('aria-expanded', 'false');
-            });
+            a.addEventListener('click', () => setMenuState(false));
+        });
+
+        mobile.querySelector('.nav__mobile-close')?.addEventListener('click', () => setMenuState(false));
+
+        backdrop?.addEventListener('click', () => setMenuState(false));
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && mobile.classList.contains('is-open')) {
+                setMenuState(false);
+            }
         });
     }
 
