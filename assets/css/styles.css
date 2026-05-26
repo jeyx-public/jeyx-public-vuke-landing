@@ -34,6 +34,8 @@ body {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     overflow-x: hidden;
+    display: flex;
+    flex-direction: column;
 }
 
 img,
@@ -1436,6 +1438,10 @@ h1, h2, h3 {
 @media (max-width: 960px) {
     .nav__links { display: none; }
     .nav__toggle { display: flex; }
+
+    /* Reorder via flex order: nav → marquee → hero → resto en mobile */
+    .nav { order: -2; }
+    .marquee { order: -1; }
 
     /* In narrow viewports the wash is softer so the photography shows
        through, and the focus stays centered horizontally. */
