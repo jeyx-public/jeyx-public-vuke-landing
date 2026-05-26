@@ -32,13 +32,23 @@
                 <span></span><span></span><span></span>
             </button>
         </div>
-        <nav id="mobileMenu" class="nav__mobile" aria-label="Navegación móvil">
-            <a href="#inicio">Inicio</a>
-            <a href="#vender">Cómo vender</a>
-            <a href="#simulador">Simular ganancias</a>
-            <a href="#preguntas">Preguntas frecuentes</a>
-        </nav>
     </header>
+    <nav id="mobileMenu" class="nav__mobile" aria-label="Navegación móvil" aria-hidden="true">
+        <button type="button" class="nav__mobile-close" aria-label="Cerrar menú">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="square" aria-hidden="true">
+                <line x1="5" y1="5" x2="19" y2="19"/>
+                <line x1="19" y1="5" x2="5" y2="19"/>
+            </svg>
+        </button>
+        <a href="#inicio">Inicio</a>
+        <a href="#vender">Cómo vender</a>
+        <a href="#simulador">Simular ganancias</a>
+        <a href="#preguntas">Preguntas frecuentes</a>
+        <div class="nav__mobile-watermark" aria-hidden="true">
+            <img src="assets/images/watermark/watermark-2.png" alt="">
+        </div>
+    </nav>
+    <div class="nav__backdrop" id="navBackdrop" aria-hidden="true"></div>
 
     <!-- ============ HERO ============ -->
     <section id="inicio" class="hero">
