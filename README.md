@@ -1,6 +1,6 @@
 ## Desktop
-<img width="1900" height="952" alt="image" src="https://github.com/user-attachments/assets/1827cf79-36b6-4366-8130-27eed604a6db" />
+<img width="1903" height="950" alt="image" src="https://github.com/user-attachments/assets/8ffec767-cdc8-4a12-bdc4-0d24d9e94cf4" />
 
 
 ## Mobile
-<img width="424" height="863" alt="image" src="https://github.com/user-attachments/assets/2b546103-7a9a-409f-8e89-450be00d3eaa" />
+<img width="425" height="858" alt="image" src="https://github.com/user-attachments/assets/ab37ce49-87c4-42b7-93d9-cdeeecc62e98" />
